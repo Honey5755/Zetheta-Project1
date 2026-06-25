@@ -50,6 +50,10 @@ module.exports = {
       env: { 'cypress/globals': true },
       rules: {
         'import/no-extraneous-dependencies': 'off',
+        // Waiting out the simulated verification/lookup/compression delays is
+        // intentional, and `.clear().type()` chaining is a documented pattern.
+        'cypress/no-unnecessary-waiting': 'off',
+        'cypress/unsafe-to-chain-command': 'off',
       },
     },
     {
