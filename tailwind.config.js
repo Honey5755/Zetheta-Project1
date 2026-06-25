@@ -36,6 +36,28 @@ export default {
       minWidth: {
         touch: '44px',
       },
+      fontFamily: {
+        sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+        display: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
+      },
+      boxShadow: {
+        card: '0 10px 30px -12px rgba(31, 78, 121, 0.18)',
+        'card-lg': '0 24px 50px -18px rgba(31, 78, 121, 0.28)',
+        btn: '0 10px 20px -8px rgba(31, 78, 121, 0.55)',
+      },
+      backgroundImage: {
+        'brand-gradient': 'linear-gradient(135deg, #1F4E79 0%, #2D6CDF 100%)',
+        'accent-gradient': 'linear-gradient(135deg, #27AE60 0%, #1f8c4d 100%)',
+      },
+      keyframes: {
+        'fade-in-up': {
+          '0%': { opacity: '0', transform: 'translateY(10px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+      },
+      animation: {
+        'fade-in-up': 'fade-in-up 0.35s ease-out',
+      },
     },
   },
   plugins: [],
