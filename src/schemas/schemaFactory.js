@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { buildStep1Schema } from './step1Schema.js';
 import { buildStep2Schema } from './step2Schema.js';
+import { buildStep3Schema } from './step3Schema.js';
 
 /** Permissive schema for steps not yet implemented (navigation passes through). */
 const PASS_THROUGH = z.object({}).passthrough();
@@ -21,6 +22,8 @@ export function getStepSchema(stepKey, values = {}) {
       return buildStep1Schema(values);
     case 'personal':
       return buildStep2Schema(values);
+    case 'kyc':
+      return buildStep3Schema(values);
     default:
       return PASS_THROUGH;
   }
