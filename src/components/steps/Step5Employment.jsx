@@ -8,9 +8,15 @@ import RadioGroup from '../common/RadioGroup.jsx';
 import CurrencyInput from '../common/CurrencyInput.jsx';
 
 const EMPLOYMENT_OPTIONS = [
-  { value: 'salaried', label: 'Salaried', description: 'You earn a regular salary from an employer.' },
-  { value: 'self-employed', label: 'Self-Employed', description: 'You work for yourself (professional / freelancer).' },
-  { value: 'business-owner', label: 'Business Owner', description: 'You own a registered business.' },
+  {
+    value: 'salaried', label: 'Salaried', description: 'You earn a regular salary from an employer.', icon: '💼',
+  },
+  {
+    value: 'self-employed', label: 'Self-Employed', description: 'You work for yourself (professional / freelancer).', icon: '🧑‍💻',
+  },
+  {
+    value: 'business-owner', label: 'Business Owner', description: 'You own a registered business.', icon: '🏪',
+  },
 ];
 
 const BUSINESS_TYPE_OPTIONS = [

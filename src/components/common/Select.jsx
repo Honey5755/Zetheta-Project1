@@ -53,7 +53,7 @@ const Select = forwardRef((
         aria-invalid={hasError || undefined}
         aria-describedby={describedBy}
         className={cn(
-          'tap-target w-full rounded-lg border bg-white px-3 py-2.5 text-slate-900 shadow-sm transition',
+          'tap-target w-full rounded-xl border bg-white px-3 py-2.5 text-slate-900 shadow-sm transition',
           'focus:outline-none focus:ring-2',
           hasError
             ? 'border-danger focus:border-danger focus:ring-danger/40'

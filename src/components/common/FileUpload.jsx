@@ -147,7 +147,7 @@ function FileUpload({
       <div
         {...getRootProps({
           className: cn(
-            'tap-target flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed p-5 text-center transition',
+            'tap-target flex cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed p-5 text-center transition',
             isDragActive ? 'border-brand bg-brand-50' : 'border-slate-300 hover:border-brand',
             (error || localError) && 'border-danger',
           ),
