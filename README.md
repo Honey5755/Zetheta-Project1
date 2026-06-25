@@ -7,6 +7,16 @@ with client-side compression, e-signature capture, AES-256-GCM encrypted
 auto-save/resume, and a pre-approval (Key Fact Statement) summary with EMI
 calculation.
 
+## Screenshots
+
+| | |
+| --- | --- |
+| **Step 1 — Loan type**<br>![Step 1 — Loan type](docs/screenshots/step1-loan-type.png) | **Step 2 — Personal**<br>![Step 2 — Personal](docs/screenshots/step2-personal.png) |
+| **Step 3 — KYC**<br>![Step 3 — KYC](docs/screenshots/step3-kyc.png) | **Step 4 — Address**<br>![Step 4 — Address](docs/screenshots/step4-address.png) |
+| **Step 5 — Employment**<br>![Step 5 — Employment](docs/screenshots/step5-employment.png) | **Step 6 — Co-applicant**<br>![Step 6 — Co-applicant](docs/screenshots/step6-coapplicant.png) |
+| **Step 7 — Documents**<br>![Step 7 — Documents](docs/screenshots/step7-documents.png) | **Step 8 — Review**<br>![Step 8 — Review](docs/screenshots/step8-review.png) |
+| **Success**<br>![Success](docs/screenshots/success.png) | **Mobile (responsive)**<br>![Mobile](docs/screenshots/mobile-step1.png) |
+
 ## Tech stack
 
 | Concern | Choice |
