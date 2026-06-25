@@ -21,7 +21,7 @@ function ProgressBar({
     <nav aria-label={`Application progress: step ${currentIndex + 1} of ${total}`}>
       <div className="h-2 w-full overflow-hidden rounded-full bg-slate-200/80" role="presentation">
         <div
-          className="h-full rounded-full bg-accent-gradient transition-all duration-500"
+          className="h-full rounded-full bg-accent bg-accent-gradient transition-all duration-500"
           style={{ width: `${percent}%` }}
         />
       </div>
@@ -34,8 +34,8 @@ function ProgressBar({
             && typeof onStepSelect === 'function';
 
           let circle = 'border-slate-300 bg-white text-slate-400';
-          if (isCurrent) circle = 'border-transparent bg-brand-gradient text-white shadow-btn ring-4 ring-brand/15';
-          else if (isComplete) circle = 'border-transparent bg-accent-gradient text-white';
+          if (isCurrent) circle = 'border-transparent bg-brand bg-brand-gradient text-white shadow-btn ring-4 ring-brand/15';
+          else if (isComplete) circle = 'border-transparent bg-accent bg-accent-gradient text-white';
 
           const badge = (
             <span
