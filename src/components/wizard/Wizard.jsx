@@ -7,8 +7,12 @@ import useFormStore from '../../store/useFormStore.js';
 import { getVisibleSteps } from '../../constants/steps.js';
 import { defaultFormValues } from '../../constants/defaultFormValues.js';
 import { getStepSchema } from '../../schemas/schemaFactory.js';
+import { useAutoSave } from '../../hooks/useAutoSave.js';
+import { useFormPersistence } from '../../hooks/useFormPersistence.js';
 import ProgressBar from './ProgressBar.jsx';
 import StepNavigation from './StepNavigation.jsx';
+import ResumeModal from './ResumeModal.jsx';
+import AutoSaveToast from './AutoSaveToast.jsx';
 
 /**
  * Lazy step registry (Spec A2.1 — code-split to keep the main chunk < 300KB).
@@ -42,6 +46,7 @@ function Wizard() {
   const currentStepKey = useFormStore((s) => s.currentStepKey);
   const visitedSteps = useFormStore((s) => s.visitedSteps);
   const setStep = useFormStore((s) => s.setStep);
+  const hydrateStep = useFormStore((s) => s.hydrateStep);
 
   // The resolver reads the *current* step key at validation time via a ref, so
   // useForm's one-time options capture stays valid as the step changes.
@@ -62,6 +67,14 @@ function Wizard() {
     mode: 'onTouched',
     resolver,
   });
+
+  // Encrypted auto-save (debounced) + resume-or-start-fresh on load (Spec C3.4).
+  const { lastSavedAt, saveNow } = useAutoSave({
+    watch: methods.watch,
+    getValues: methods.getValues,
+    getStepKey: () => stepKeyRef.current,
+  });
+  const persistence = useFormPersistence({ reset: methods.reset, onResume: hydrateStep });
 
   // Only the two fields that gate the conditional step need to be watched here.
   const loanType = methods.watch('loanType');
@@ -155,10 +168,21 @@ function Wizard() {
               isAdvancing={advancing}
               onPrev={handlePrev}
               onNext={handleNext}
+              onSaveDraft={saveNow}
             />
           </form>
         </section>
       </div>
+
+      <AutoSaveToast savedAt={lastSavedAt} />
+
+      {persistence.hasDraft && (
+        <ResumeModal
+          draft={persistence.draft}
+          onResume={persistence.resume}
+          onStartFresh={persistence.startFresh}
+        />
+      )}
     </FormProvider>
   );
 }
