@@ -84,7 +84,7 @@ function Step6CoApplicant() {
             transform={(raw) => raw.toUpperCase()}
             placeholder="AAAAA9999A"
             error={errors.coApplicantPan?.message}
-            endAdornment={pan.isVerified ? <span className="text-xs font-semibold text-accent-700">✓</span> : null}
+            endAdornment={pan.isVerified ? <span className="text-xs font-semibold text-accent-800">✓</span> : null}
             onChange={(v) => {
               field.onChange(v);
               pan.reset();

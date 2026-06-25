@@ -80,7 +80,7 @@ function SignatureCanvas({
         )}
       </div>
       <div className="flex items-center justify-between">
-        <span className="text-xs text-slate-400">Sign using your mouse or finger.</span>
+        <span className="text-xs text-slate-500">Sign using your mouse or finger.</span>
         <button
           type="button"
           onClick={handleClear}

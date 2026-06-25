@@ -141,7 +141,7 @@ function FileUpload({
       <p className="text-sm font-medium text-slate-700">
         {label}
         {required && <span className="ml-0.5 text-danger" aria-hidden="true">*</span>}
-        {!required && <span className="ml-1 text-xs font-normal text-slate-400">(optional)</span>}
+        {!required && <span className="ml-1 text-xs font-normal text-slate-500">(optional)</span>}
       </p>
 
       <div
@@ -157,7 +157,7 @@ function FileUpload({
         <p className="text-sm text-slate-600">
           {isDragActive ? 'Drop the file here…' : 'Drag & drop or click to browse'}
         </p>
-        <p className="mt-1 text-xs text-slate-400">{`${acceptLabel} · up to ${maxSizeMB} MB`}</p>
+        <p className="mt-1 text-xs text-slate-500">{`${acceptLabel} · up to ${maxSizeMB} MB`}</p>
       </div>
 
       {helpText && <p className="text-xs text-slate-500">{helpText}</p>}

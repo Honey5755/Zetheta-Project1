@@ -31,7 +31,7 @@ const STEP_COMPONENTS = {
 
 function StepFallback() {
   return (
-    <div className="flex items-center justify-center py-16 text-slate-400" aria-live="polite">
+    <div className="flex items-center justify-center py-16 text-slate-500" aria-live="polite">
       Loading step…
     </div>
   );
@@ -139,7 +139,7 @@ function Wizard() {
             <img src="/favicon.svg" alt="" className="h-8 w-8" aria-hidden="true" />
             <span className="text-lg font-bold text-brand">LendSwift</span>
           </div>
-          <span className="text-xs text-slate-400">Secure application</span>
+          <span className="text-xs text-slate-500">Secure application</span>
         </header>
 
         <ProgressBar
@@ -153,7 +153,7 @@ function Wizard() {
           className="mt-6 rounded-xl border border-slate-200 bg-white p-5 shadow-sm sm:p-7"
           aria-labelledby="step-heading"
         >
-          <p className="text-xs font-semibold uppercase tracking-wide text-accent-700">
+          <p className="text-xs font-semibold uppercase tracking-wide text-accent-800">
             {`Step ${currentStep.number} of 8`}
           </p>
           <h1

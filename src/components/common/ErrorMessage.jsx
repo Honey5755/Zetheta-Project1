@@ -20,7 +20,7 @@ function ErrorMessage({ id, message, className }) {
       id={id}
       role="alert"
       aria-live="polite"
-      className={cn('min-h-[1.25rem] text-sm font-medium text-danger', className)}
+      className={cn('min-h-[1.25rem] text-sm font-medium text-danger-700', className)}
     >
       {message || ''}
     </p>
