@@ -1,15 +1,15 @@
 /**
- * Accessible step progress indicator (Spec A1.8 / B4.2).
+ * Accessible connected stepper (Spec A1.8 / B4.2).
  *
- * Rendered as an ordered list inside a labelled <nav>. The current step is
- * marked with `aria-current="step"` and the whole control exposes a concise
- * "Step X of Y" label to assistive tech via aria-label.
+ * A gradient progress track plus numbered circles joined by connector lines.
+ * The current step is marked with `aria-current="step"`; visited steps are
+ * jump-able; every step exposes a concise label to assistive tech.
  *
  * @param {Object} props
- * @param {import('../../constants/steps.js').StepDef[]} props.steps  Visible steps.
- * @param {number} props.currentIndex  Index of the active step within `steps`.
- * @param {string[]} props.visitedKeys  Keys the user has already reached.
- * @param {(key: string) => void} [props.onStepSelect]  Navigate to a visited step.
+ * @param {import('../../constants/steps.js').StepDef[]} props.steps
+ * @param {number} props.currentIndex
+ * @param {string[]} props.visitedKeys
+ * @param {(key: string) => void} [props.onStepSelect]
  */
 function ProgressBar({
   steps, currentIndex, visitedKeys, onStepSelect,
@@ -19,65 +19,73 @@ function ProgressBar({
 
   return (
     <nav aria-label={`Application progress: step ${currentIndex + 1} of ${total}`}>
-      {/* Visual progress track */}
-      <div
-        className="mb-4 h-1.5 w-full overflow-hidden rounded-full bg-slate-200"
-        role="presentation"
-      >
+      <div className="h-2 w-full overflow-hidden rounded-full bg-slate-200/80" role="presentation">
         <div
-          className="h-full rounded-full bg-accent transition-all duration-300"
+          className="h-full rounded-full bg-accent-gradient transition-all duration-500"
           style={{ width: `${percent}%` }}
         />
       </div>
 
-      <ol className="flex flex-wrap gap-2">
+      <ol className="mt-3 flex items-start">
         {steps.map((step, idx) => {
           const isCurrent = idx === currentIndex;
           const isComplete = idx < currentIndex;
-          const isVisited = visitedKeys.includes(step.key);
-          const canJump = isVisited && !isCurrent && typeof onStepSelect === 'function';
+          const canJump = visitedKeys.includes(step.key) && !isCurrent
+            && typeof onStepSelect === 'function';
 
-          let stateClasses = 'border-slate-300 bg-white text-slate-500';
-          if (isCurrent) stateClasses = 'border-brand bg-brand text-white';
-          else if (isComplete) stateClasses = 'border-accent bg-accent/10 text-accent-800';
+          let circle = 'border-slate-300 bg-white text-slate-400';
+          if (isCurrent) circle = 'border-transparent bg-brand-gradient text-white shadow-btn ring-4 ring-brand/15';
+          else if (isComplete) circle = 'border-transparent bg-accent-gradient text-white';
 
-          const content = (
-            <span className="flex items-center gap-2">
-              <span
-                className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full border text-xs font-semibold ${stateClasses}`}
-                aria-hidden="true"
-              >
-                {isComplete ? '✓' : idx + 1}
-              </span>
-              <span className="hidden text-sm font-medium sm:inline">
-                {step.shortTitle}
-              </span>
+          const badge = (
+            <span
+              className={`flex h-9 w-9 items-center justify-center rounded-full border text-sm font-bold transition ${circle}`}
+              aria-hidden="true"
+            >
+              {isComplete ? '✓' : idx + 1}
             </span>
           );
+
+          let label = 'text-slate-500';
+          if (isCurrent) label = 'text-brand-800';
+          else if (isComplete) label = 'text-accent-800';
 
           return (
             <li
               key={step.key}
               aria-current={isCurrent ? 'step' : undefined}
-              className="flex items-center"
+              className="flex flex-1 flex-col items-center"
             >
-              {canJump ? (
-                <button
-                  type="button"
-                  onClick={() => onStepSelect(step.key)}
-                  className="tap-target rounded px-1 py-1 hover:bg-slate-100"
-                >
-                  {content}
-                  <span className="sr-only">{`Go to step ${idx + 1}, ${step.title}`}</span>
-                </button>
-              ) : (
-                <span className="px-1 py-1">
-                  {content}
-                  <span className="sr-only">
-                    {`Step ${idx + 1}, ${step.title}${isCurrent ? ' (current)' : ''}`}
+              <div className="flex w-full items-center">
+                <span
+                  className={`h-0.5 flex-1 rounded ${idx === 0 ? 'opacity-0' : ''} ${idx <= currentIndex ? 'bg-accent' : 'bg-slate-200'}`}
+                  aria-hidden="true"
+                />
+                {canJump ? (
+                  <button
+                    type="button"
+                    onClick={() => onStepSelect(step.key)}
+                    className="rounded-full transition hover:scale-105"
+                  >
+                    {badge}
+                    <span className="sr-only">{`Go to step ${idx + 1}, ${step.title}`}</span>
+                  </button>
+                ) : (
+                  <span>
+                    {badge}
+                    <span className="sr-only">
+                      {`Step ${idx + 1}, ${step.title}${isCurrent ? ' (current)' : ''}`}
+                    </span>
                   </span>
-                </span>
-              )}
+                )}
+                <span
+                  className={`h-0.5 flex-1 rounded ${idx === total - 1 ? 'opacity-0' : ''} ${idx < currentIndex ? 'bg-accent' : 'bg-slate-200'}`}
+                  aria-hidden="true"
+                />
+              </div>
+              <span className={`mt-1.5 hidden text-center text-[11px] font-semibold sm:block ${label}`}>
+                {step.shortTitle}
+              </span>
             </li>
           );
         })}

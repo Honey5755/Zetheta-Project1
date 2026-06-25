@@ -87,7 +87,7 @@ const MaskedInput = forwardRef((
           aria-invalid={hasError || undefined}
           aria-describedby={describedBy}
           className={cn(
-            'tap-target w-full rounded-lg border bg-white px-3 py-2.5 pr-12 font-mono tracking-wider text-slate-900 shadow-sm transition',
+            'tap-target w-full rounded-xl border bg-white px-3 py-2.5 pr-12 font-mono tracking-wider text-slate-900 shadow-sm transition',
             'placeholder:font-sans placeholder:text-slate-400 focus:outline-none focus:ring-2',
             hasError
               ? 'border-danger focus:border-danger focus:ring-danger/40'

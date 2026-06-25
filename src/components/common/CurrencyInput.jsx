@@ -78,7 +78,7 @@ const CurrencyInput = forwardRef((
           aria-invalid={hasError || undefined}
           aria-describedby={describedBy}
           className={cn(
-            'tap-target w-full rounded-lg border bg-white py-2.5 pl-7 pr-3 text-slate-900 shadow-sm transition',
+            'tap-target w-full rounded-xl border bg-white py-2.5 pl-7 pr-3 text-slate-900 shadow-sm transition',
             'placeholder:text-slate-400 focus:outline-none focus:ring-2',
             hasError
               ? 'border-danger focus:border-danger focus:ring-danger/40'

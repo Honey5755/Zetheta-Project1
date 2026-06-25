@@ -27,17 +27,17 @@ function StepNavigation({
         type="button"
         onClick={onPrev}
         disabled={isFirst}
-        className="tap-target rounded-lg border border-slate-300 px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-40"
+        className="tap-target rounded-xl border border-slate-300 px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-40"
       >
         ← Previous
       </button>
 
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-2 sm:gap-3">
         {onSaveDraft && (
           <button
             type="button"
             onClick={onSaveDraft}
-            className="tap-target rounded-lg px-4 py-2.5 text-sm font-semibold text-brand underline-offset-2 transition hover:underline"
+            className="tap-target rounded-xl px-4 py-2.5 text-sm font-semibold text-brand transition hover:bg-brand-50"
           >
             Save Draft
           </button>
@@ -48,7 +48,7 @@ function StepNavigation({
             type="button"
             onClick={onNext}
             disabled={isAdvancing}
-            className="tap-target rounded-lg bg-brand px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-700 disabled:cursor-not-allowed disabled:opacity-60"
+            className="tap-target rounded-xl bg-brand-gradient px-7 py-2.5 text-sm font-semibold text-white shadow-btn transition hover:-translate-y-0.5 hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
           >
             {isAdvancing ? 'Checking…' : 'Continue →'}
           </button>

@@ -59,6 +59,7 @@ function Step1LoanType() {
               value: p.id,
               label: p.label,
               description: p.blurb,
+              icon: { personal: '💳', home: '🏠', business: '🏢' }[p.id],
             }))}
           />
         )}

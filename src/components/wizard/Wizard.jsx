@@ -133,34 +133,42 @@ function Wizard() {
 
   return (
     <FormProvider {...methods}>
-      <div className="mx-auto w-full max-w-2xl px-4 py-6 sm:py-10">
-        <header className="mb-6 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <img src="/favicon.svg" alt="" className="h-8 w-8" aria-hidden="true" />
-            <span className="text-lg font-bold text-brand">LendSwift</span>
+      <div className="mx-auto w-full max-w-2xl px-4 py-8 sm:py-12">
+        <header className="mb-7 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <img src="/favicon.svg" alt="" className="h-11 w-11 rounded-2xl shadow-btn" aria-hidden="true" />
+            <div>
+              <p className="font-display text-xl font-extrabold leading-none text-brand-800">LendSwift</p>
+              <p className="mt-1 text-xs text-slate-500">Smart lending, simplified</p>
+            </div>
           </div>
-          <span className="text-xs text-slate-500">Secure application</span>
+          <span className="hidden items-center gap-1.5 rounded-full bg-white/80 px-3 py-1.5 text-xs font-medium text-slate-600 shadow-card backdrop-blur sm:inline-flex">
+            <span aria-hidden="true">🔒</span>
+            Secure &amp; encrypted
+          </span>
         </header>
 
-        <ProgressBar
-          steps={visibleSteps}
-          currentIndex={currentIndex}
-          visitedKeys={visitedSteps}
-          onStepSelect={setStep}
-        />
+        <div className="rounded-2xl border border-white/70 bg-white/70 p-4 shadow-card backdrop-blur">
+          <ProgressBar
+            steps={visibleSteps}
+            currentIndex={currentIndex}
+            visitedKeys={visitedSteps}
+            onStepSelect={setStep}
+          />
+        </div>
 
         <section
-          className="mt-6 rounded-xl border border-slate-200 bg-white p-5 shadow-sm sm:p-7"
+          className="mt-5 animate-fade-in-up rounded-2xl border border-white/70 bg-white p-6 shadow-card-lg sm:p-8"
           aria-labelledby="step-heading"
         >
-          <p className="text-xs font-semibold uppercase tracking-wide text-accent-800">
+          <span className="inline-flex items-center rounded-full bg-accent/10 px-3 py-1 text-xs font-bold uppercase tracking-wide text-accent-800">
             {`Step ${currentStep.number} of 8`}
-          </p>
+          </span>
           <h1
             id="step-heading"
             ref={headingRef}
             tabIndex={-1}
-            className="mt-1 text-xl font-bold text-slate-900 outline-none sm:text-2xl"
+            className="mt-3 font-display text-2xl font-extrabold text-slate-900 outline-none sm:text-[27px]"
           >
             {currentStep.title}
           </h1>
