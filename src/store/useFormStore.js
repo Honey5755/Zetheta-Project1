@@ -1,79 +1,41 @@
 import { create } from 'zustand';
-import { getVisibleStepKeys } from '../constants/steps.js';
 
 /**
- * Global wizard + form-data store (Spec A1.4 Pattern 3 — Wizard + central
- * store). Keeping accumulated data here (rather than component-local state)
- * is what makes cross-step validation, auto-save, and back-navigation safe;
- * unmounting a step never destroys its data (cf. Spec A4.3).
+ * Wizard navigation store.
  *
- * Navigation tracks the *current step key* (not an index), so inserting or
- * removing the conditional Co-Applicant step keeps the user in place.
- *
- * @typedef {Object} FormState
- * @property {string} currentStepKey
- * @property {Record<string, unknown>} formData
- * @property {Set<string>} visitedSteps
+ * Field *values* live in the single React Hook Form instance (the source of
+ * truth); this store only owns navigation state — which step is active and
+ * which steps have been reached. Keeping these separate avoids dual-source
+ * drift while still letting auto-save serialise `currentStepKey` alongside the
+ * RHF values (Spec C3.4).
  */
 
 const FIRST_STEP = 'loan-type';
 
 const useFormStore = create((set) => ({
   currentStepKey: FIRST_STEP,
-  /** Accumulated, validated-or-draft data across every step. */
-  formData: {},
-  /** Step keys the user has reached (for progress + edit affordances). */
+  /** Step keys the user has reached (drives progress + "Edit" affordances). */
   visitedSteps: [FIRST_STEP],
 
-  /**
-   * Merge a partial patch into the accumulated form data.
-   * @param {Record<string, unknown>} patch
-   */
-  setFormData: (patch) => set((s) => ({ formData: { ...s.formData, ...patch } })),
+  /** Navigate to a step by key, recording it as visited. */
+  setStep: (key) => set((s) => ({
+    currentStepKey: key,
+    visitedSteps: s.visitedSteps.includes(key) ? s.visitedSteps : [...s.visitedSteps, key],
+  })),
 
-  /** Jump to a specific step by key (used by "Edit" links in the review step). */
-  goToStep: (key) => set((s) => {
-    const visible = getVisibleStepKeys(s.formData);
-    if (!visible.includes(key)) return s;
+  /** Restore navigation position from a resumed draft. */
+  hydrateStep: (key) => set((s) => {
+    const target = key || FIRST_STEP;
     return {
-      currentStepKey: key,
-      visitedSteps: s.visitedSteps.includes(key)
+      currentStepKey: target,
+      visitedSteps: s.visitedSteps.includes(target)
         ? s.visitedSteps
-        : [...s.visitedSteps, key],
+        : [...s.visitedSteps, target],
     };
   }),
 
-  /** Advance to the next visible step (clamped at the last step). */
-  goNext: () => set((s) => {
-    const visible = getVisibleStepKeys(s.formData);
-    const idx = visible.indexOf(s.currentStepKey);
-    const nextKey = visible[Math.min(idx + 1, visible.length - 1)];
-    return {
-      currentStepKey: nextKey,
-      visitedSteps: s.visitedSteps.includes(nextKey)
-        ? s.visitedSteps
-        : [...s.visitedSteps, nextKey],
-    };
-  }),
-
-  /** Go back to the previous visible step (clamped at the first step). */
-  goPrev: () => set((s) => {
-    const visible = getVisibleStepKeys(s.formData);
-    const idx = visible.indexOf(s.currentStepKey);
-    return { currentStepKey: visible[Math.max(idx - 1, 0)] };
-  }),
-
-  /** Restore a previously saved draft (used by the resume flow, Spec C3.4). */
-  hydrate: ({ formData = {}, currentStepKey = FIRST_STEP } = {}) => set({
-    formData,
-    currentStepKey,
-    visitedSteps: [FIRST_STEP, currentStepKey].filter(
-      (v, i, a) => a.indexOf(v) === i,
-    ),
-  }),
-
-  /** Wipe all state (Start Fresh / post-submission cleanup). */
-  reset: () => set({ currentStepKey: FIRST_STEP, formData: {}, visitedSteps: [FIRST_STEP] }),
+  /** Reset to the first step (Start Fresh / post-submission). */
+  resetWizard: () => set({ currentStepKey: FIRST_STEP, visitedSteps: [FIRST_STEP] }),
 }));
 
 export default useFormStore;
