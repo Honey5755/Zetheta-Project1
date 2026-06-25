@@ -39,7 +39,7 @@ function ProgressBar({
 
           let stateClasses = 'border-slate-300 bg-white text-slate-500';
           if (isCurrent) stateClasses = 'border-brand bg-brand text-white';
-          else if (isComplete) stateClasses = 'border-accent bg-accent/10 text-accent-700';
+          else if (isComplete) stateClasses = 'border-accent bg-accent/10 text-accent-800';
 
           const content = (
             <span className="flex items-center gap-2">

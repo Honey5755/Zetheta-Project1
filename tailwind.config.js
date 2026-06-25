@@ -17,6 +17,7 @@ export default {
           DEFAULT: '#27AE60', // success green
           600: '#27AE60',
           700: '#1f8c4d',
+          800: '#176d3c', // AA-contrast green for small text on white
         },
         danger: {
           DEFAULT: '#E74C3C', // error red

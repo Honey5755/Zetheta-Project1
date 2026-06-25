@@ -23,7 +23,7 @@ function VerifyBadge({ status }) {
   }
   if (status === 'verified') {
     return (
-      <span className="flex items-center gap-1 text-xs font-semibold text-accent-700">
+      <span className="flex items-center gap-1 text-xs font-semibold text-accent-800">
         <span aria-hidden="true">✓</span>
         <span className="sr-only">Verified</span>
       </span>

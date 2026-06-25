@@ -22,7 +22,7 @@ function SuccessModal({ referenceNumber, onClose }) {
       className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 p-4"
     >
       <div className="w-full max-w-md rounded-xl bg-white p-6 text-center shadow-xl">
-        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-accent/10 text-2xl text-accent-700" aria-hidden="true">
+        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-accent/10 text-2xl text-accent-800" aria-hidden="true">
           ✓
         </div>
         <h2
@@ -37,7 +37,7 @@ function SuccessModal({ referenceNumber, onClose }) {
           Thank you. Your loan application has been received and is being reviewed.
         </p>
         <div className="mt-4 rounded-lg bg-slate-50 p-3">
-          <p className="text-xs uppercase tracking-wide text-slate-400">Reference number</p>
+          <p className="text-xs uppercase tracking-wide text-slate-500">Reference number</p>
           <p className="mt-1 break-all font-mono text-sm font-semibold text-brand">{referenceNumber}</p>
         </div>
         <button
