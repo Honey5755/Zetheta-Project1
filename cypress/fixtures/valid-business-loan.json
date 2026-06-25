@@ -1,0 +1,30 @@
+{
+  "step1": { "loanType": "business", "amount": 3000000, "tenure": 60, "purpose": "Business Expansion" },
+  "step2": {
+    "fullName": "Priya Mehta",
+    "dob": "1985-02-10",
+    "gender": "female",
+    "maritalStatus": "married",
+    "fatherName": "Suresh Mehta",
+    "motherName": "Lata Mehta",
+    "email": "priya@example.com",
+    "mobile": "9900112233"
+  },
+  "step3": { "pan": "ABCPE1234F", "aadhaar": "234123412346" },
+  "step4": { "line1": "78 Industrial Estate", "pin": "411001", "residenceType": "owned", "years": 8 },
+  "step5business": {
+    "businessName": "Mehta Traders",
+    "businessType": "proprietorship",
+    "annualTurnover": 8000000,
+    "yearsInBusiness": 6,
+    "gstNumber": "22ABCDE1234F1Z5",
+    "officeAddress": "78 Industrial Estate, Pune, Maharashtra",
+    "yearsOfExperience": 10
+  },
+  "coApplicant": {
+    "name": "Rohan Mehta",
+    "relationship": "business-partner",
+    "pan": "AAAPA0000A",
+    "income": 95000
+  }
+}

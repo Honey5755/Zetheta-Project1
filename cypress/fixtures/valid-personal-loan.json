@@ -1,0 +1,21 @@
+{
+  "step1": { "loanType": "personal", "amount": 300000, "tenure": 24, "purpose": "Travel" },
+  "step2": {
+    "fullName": "Anjali Sharma",
+    "dob": "1992-05-15",
+    "gender": "female",
+    "maritalStatus": "single",
+    "fatherName": "Rakesh Sharma",
+    "motherName": "Sunita Sharma",
+    "email": "anjali@example.com",
+    "mobile": "9876543210"
+  },
+  "step3": { "pan": "ABCPE1234F", "aadhaar": "234123412346" },
+  "step4": { "line1": "12 MG Road", "pin": "560001", "residenceType": "owned", "years": 3 },
+  "step5": {
+    "companyName": "Acme Corp",
+    "designation": "Senior Engineer",
+    "monthlyNetSalary": 90000,
+    "yearsOfExperience": 5
+  }
+}
