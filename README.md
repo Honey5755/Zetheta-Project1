@@ -7,6 +7,8 @@ with client-side compression, e-signature capture, AES-256-GCM encrypted
 auto-save/resume, and a pre-approval (Key Fact Statement) summary with EMI
 calculation.
 
+**🔗 Live demo:** https://zethetaproject1.netlify.app/
+
 ## Screenshots
 
 | | |
@@ -129,6 +131,8 @@ cypress/
   written against the real DOM and lint clean.
 
 ## Deployment
+
+Deployed on Netlify: **https://zethetaproject1.netlify.app/**
 
 This is a static SPA (no backend, no client-side routing). Deploy the `dist/` build
 to any static host:

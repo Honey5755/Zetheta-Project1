@@ -12,7 +12,7 @@ the project window.
 - [x] `npm run test:unit` — all tests pass.
 - [ ] `npm run test:e2e` — run on a machine where the Cypress runner can launch.
 - [ ] `README.md` screenshots added (capture each step at mobile + desktop).
-- [ ] (Optional, bonus) Deployed to Vercel/Netlify; URL added to `README.md`.
+- [x] (Bonus) Deployed to Netlify: https://zethetaproject1.netlify.app/ (URL in `README.md`).
 
 ## Repository settings (do these in GitHub UI — account-owner actions)
 
