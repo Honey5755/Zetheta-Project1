@@ -16,6 +16,8 @@ const useFormStore = create((set) => ({
   currentStepKey: FIRST_STEP,
   /** Step keys the user has reached (drives progress + "Edit" affordances). */
   visitedSteps: [FIRST_STEP],
+  /** Application reference number, set on successful submission. */
+  submissionRef: null,
 
   /** Navigate to a step by key, recording it as visited. */
   setStep: (key) => set((s) => ({
@@ -34,8 +36,13 @@ const useFormStore = create((set) => ({
     };
   }),
 
+  /** Record a successful submission with its reference number. */
+  completeSubmission: (ref) => set({ submissionRef: ref }),
+
   /** Reset to the first step (Start Fresh / post-submission). */
-  resetWizard: () => set({ currentStepKey: FIRST_STEP, visitedSteps: [FIRST_STEP] }),
+  resetWizard: () => set({
+    currentStepKey: FIRST_STEP, visitedSteps: [FIRST_STEP], submissionRef: null,
+  }),
 }));
 
 export default useFormStore;
