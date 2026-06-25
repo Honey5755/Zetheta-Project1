@@ -1,0 +1,27 @@
+{
+  "step1": { "loanType": "home", "amount": 2500000, "tenure": 240, "purpose": "Purchase of New House" },
+  "step2": {
+    "fullName": "Vikram Sharma",
+    "dob": "1988-09-20",
+    "gender": "male",
+    "maritalStatus": "married",
+    "fatherName": "Mohan Sharma",
+    "motherName": "Geeta Sharma",
+    "email": "vikram@example.com",
+    "mobile": "9812345678"
+  },
+  "step3": { "pan": "ABCPE1234F", "aadhaar": "234123412346" },
+  "step4": { "line1": "44 Park Street", "pin": "700001", "residenceType": "owned", "years": 6 },
+  "step5": {
+    "companyName": "Globex Ltd",
+    "designation": "Manager",
+    "monthlyNetSalary": 180000,
+    "yearsOfExperience": 12
+  },
+  "coApplicant": {
+    "name": "Anjali Sharma",
+    "relationship": "spouse",
+    "pan": "AAAPA0000A",
+    "income": 60000
+  }
+}
