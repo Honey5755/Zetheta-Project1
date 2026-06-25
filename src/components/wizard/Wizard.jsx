@@ -13,6 +13,7 @@ import ProgressBar from './ProgressBar.jsx';
 import StepNavigation from './StepNavigation.jsx';
 import ResumeModal from './ResumeModal.jsx';
 import AutoSaveToast from './AutoSaveToast.jsx';
+import SuccessModal from './SuccessModal.jsx';
 
 /**
  * Lazy step registry (Spec A2.1 — code-split to keep the main chunk < 300KB).
@@ -47,6 +48,8 @@ function Wizard() {
   const visitedSteps = useFormStore((s) => s.visitedSteps);
   const setStep = useFormStore((s) => s.setStep);
   const hydrateStep = useFormStore((s) => s.hydrateStep);
+  const submissionRef = useFormStore((s) => s.submissionRef);
+  const resetWizard = useFormStore((s) => s.resetWizard);
 
   // The resolver reads the *current* step key at validation time via a ref, so
   // useForm's one-time options capture stays valid as the step changes.
@@ -123,6 +126,11 @@ function Wizard() {
     setStep(vis[Math.max(idx - 1, 0)].key);
   }, [methods, setStep]);
 
+  const handleStartOver = useCallback(() => {
+    methods.reset(defaultFormValues);
+    resetWizard();
+  }, [methods, resetWizard]);
+
   return (
     <FormProvider {...methods}>
       <div className="mx-auto w-full max-w-2xl px-4 py-6 sm:py-10">
@@ -176,12 +184,16 @@ function Wizard() {
 
       <AutoSaveToast savedAt={lastSavedAt} />
 
-      {persistence.hasDraft && (
+      {persistence.hasDraft && !submissionRef && (
         <ResumeModal
           draft={persistence.draft}
           onResume={persistence.resume}
           onStartFresh={persistence.startFresh}
         />
+      )}
+
+      {submissionRef && (
+        <SuccessModal referenceNumber={submissionRef} onClose={handleStartOver} />
       )}
     </FormProvider>
   );
