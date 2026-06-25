@@ -48,7 +48,7 @@ function StepNavigation({
             type="button"
             onClick={onNext}
             disabled={isAdvancing}
-            className="tap-target rounded-xl bg-brand-gradient px-7 py-2.5 text-sm font-semibold text-white shadow-btn transition hover:-translate-y-0.5 hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
+            className="tap-target rounded-xl bg-brand bg-brand-gradient px-7 py-2.5 text-sm font-semibold text-white shadow-btn transition hover:-translate-y-0.5 hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
           >
             {isAdvancing ? 'Checking…' : 'Continue →'}
           </button>

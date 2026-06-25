@@ -86,7 +86,7 @@ const RadioGroup = forwardRef((
                 <span
                   className={cn(
                     'flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-xl transition',
-                    selected ? 'bg-brand-gradient' : 'bg-slate-100',
+                    selected ? 'bg-brand bg-brand-gradient' : 'bg-slate-100',
                   )}
                   aria-hidden="true"
                 >
